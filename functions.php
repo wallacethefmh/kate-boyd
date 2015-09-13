@@ -1,0 +1,148 @@
+<?php
+/**
+ *  Include Rye.
+ */
+require_once 'rye.php';
+
+
+/**
+ *  Site configurations.
+ */
+Rye::init(array(
+
+  /**
+   *  Place JavaScripts in footer. This tends to break some plugins that rely on
+   *  jQuery in the header. Enable with caution (even though it's recommended).
+   *  http://developer.yahoo.com/performance/rules.html#js_bottom
+   */
+  'place_javascript_in_footer' => true,
+
+
+
+  /**
+   *  Path to JavaScript files. Notice that vendor libraries are left separate
+   *  from the custom compiled script. This allows for better compatibility with
+   *  other plugins.
+   *  http://codex.wordpress.org/Function_Reference/wp_register_script
+   */
+  'javascripts' => array(
+    'libs' => get_bloginfo('template_directory').'/assets/dist/kateboyd.libs.js',
+    'app' => get_bloginfo('template_directory').'/assets/dist/kateboyd.app.js'
+  ),
+  
+  
+  
+  /**
+   *  Image size
+   *  http://codex.wordpress.org/Function_Reference/add_image_size
+   *
+   *  '<image-size-name>' => array(<width>, <height>, <crop>)
+   */
+  'image_sizes' => array(
+    'medium'  => array(500, 500, false),
+    'small' => array(200, 200, true)
+  ),
+
+
+
+  /**
+   *  Declare custom post types.
+   *  http://codex.wordpress.org/Function_Reference/register_post_type
+   */
+  'post_types' => array(
+    
+    'gallery' => array(
+      'labels'     => array('name' => 'Galleries'),
+      'show_ui'    => true, 
+      'show_in_menu'   => true, 
+      'query_var'    => true,
+      'rewrite'    => true,
+      'capability_type'  => 'page',
+      'has_archive'  => true, 
+      'hierarchical'   => false,
+      'supports'     => array('title','thumbnail','custom-fields')
+    ),
+    /*
+    'some_type' => array(
+      'labels'     => array('name' => 'Some Type'),
+      'public'     => false,
+      'publicly_queryable' => false,
+      'show_ui'    => true, 
+      'show_in_menu'   => true, 
+      'query_var'    => true,
+      'rewrite'    => true,
+      'capability_type'  => 'post',
+      'has_archive'  => true, 
+      'hierarchical'   => false,
+      'menu_position'  => 4,
+      'supports'     => array('title','thumbnail','custom-fields')
+    )
+    */
+  ),
+
+
+
+  /**
+   *  Declare custom taxonomies.
+   *  http://codex.wordpress.org/Function_Reference/register_taxonomy
+   */
+  'taxonomies' => array(
+    /*
+    array(
+      'tax_name', 'postype_name', array(
+      'hierarchical'  => false,
+      'labels'    => array('name' => '<Tax Name>'),
+      'show_ui'   => true,
+      'query_var'   => true,
+      'rewrite'   => array('slug' => 'tax-name'),
+      )
+    ),
+    */
+  )
+));
+
+// Set the enviornment property. If in production the scripts and styles
+// will be minified.
+// Rye::$enviornment = Rye::PRODUCTION;
+
+
+// Filters.
+// Miscellaneous theme specific utility filters.
+
+/**
+ *  Filter text through the the_content filter. Userful outside the loop.
+ *  http://codex.wordpress.org/Function_Reference/the_content#Alternative_Usage
+ *  
+ *  apply_filters('wp_content', $str);
+ */
+add_filter('wp_content', function ($str) {
+   $content = apply_filters('the_content', $str);
+   $content = str_replace(']]>', ']]&gt;', $content);
+   return $content;
+}, 10, 1);
+
+
+/**
+ *  Truncate text by words. Note: This also strips html tags.
+ *  https://bitbucket.org/ellislab/codeigniter/src
+ *  
+ *  apply_filters('truncate_by_words', $longstr, 20, '...');
+ */
+add_filter('truncate_by_words', function ($str, $limit = 100, $end_char = '&#8230;') {
+   if (trim($str) == '') 
+     return strip_tags($str);
+
+   preg_match('/^\s*+(?:\S++\s*+){1,'.(int) $limit.'}/', $str, $matches);
+
+   if (strlen($str) == strlen($matches[0])) 
+     $end_char = '';
+
+   return strip_tags(rtrim($matches[0]).$end_char);
+}, 10, 3);
+
+
+/**
+ *  Theme specific methods.
+ *  Other methods which make the theme function.
+ */
+

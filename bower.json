@@ -1,0 +1,22 @@
+{
+  "name": "kateboyd",
+  "version": "0.0.0",
+  "description": "Kate's Theme",
+  "authors": [
+    "Will Boyd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.2.0",
+    "jquery.cycle2": "https://raw.github.com/malsup/malsup.github.com/master/jquery.cycle2.js",
+    "jquery": "~2.1.1",
+    "isotope": "~2.1.0"
+  }
+}
