@@ -59,7 +59,7 @@ Rye::init(array(
       'rewrite'    => true,
       'capability_type'  => 'page',
       'has_archive'  => true, 
-      'hierarchical'   => false,
+      'hierarchical'   => true,
       'supports'     => array('title','thumbnail','custom-fields')
     ),
     /*

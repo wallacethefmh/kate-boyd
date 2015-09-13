@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="boyd-dev">
+    <serverData>
+      <paths name="boyd-dev">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/var/www/html/kate-boyd/wp-content/themes/katev2" local="$PROJECT_DIR$" web="" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/bower_components" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>

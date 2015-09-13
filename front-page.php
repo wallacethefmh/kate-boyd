@@ -2,10 +2,10 @@
 
 <?php
 
-$resume_url = get_field('resume');
-
 $args = array(
 	"post_type" => "gallery",
+	"orderby" => "menu_order",
+	"order" => "ASC",
 	"posts_per_page" => -1
 );
 $galleries = new WP_Query($args);
@@ -43,7 +43,7 @@ $galleries = new WP_Query($args);
 	<img class='icon' src="<?php bloginfo('template_directory'); ?>/assets/images/about-icon.png" />
 	<p>Hi. <b>I love art.</b><br/>
 	I design. I paint. I observe.</p>
-	<a class="resume" href="<?php echo $resume_url; ?>" target="_blank">resume</a>
+	<a class="resume" href="<?php echo get_field('resume'); ?>" target="_blank">resume</a>
 </section>
 
 <section class="contact">

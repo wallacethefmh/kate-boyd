@@ -29,6 +29,7 @@
 		<nav>
 			<div class='item' data-section='.design'><a href='javascript:void(0);'>Design</a></div>
 			<div class='item' data-section='.about'><a href='javascript:void(0);'>About</a></div>
+			<div class='item'><a href="<?php echo get_field('resume'); ?>" target="_blank">Resume</a></div>
 			<div class='item' data-section='.contact'><a href='javascript:void(0);'>Contact</a></div>
 		</nav>
 	</header>
