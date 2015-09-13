@@ -1,6 +1,72 @@
-/*! kateboyd 2015-06-30 */
+/*! kateboyd 2015-09-13 */
 * {} /* Code happy. */
 
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxWrapper {max-width:none;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto; -webkit-overflow-scrolling: touch;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width:none; -ms-interpolation-mode:bicubic;}
+.cboxIframe{width:100%; height:100%; display:block; border:0; padding:0; margin:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box; -moz-box-sizing:content-box; -webkit-box-sizing:content-box;}
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of Colorbox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:url(images/overlay.png) repeat 0 0; opacity: 0.9; filter: alpha(opacity = 90);}
+#colorbox{outline:0;}
+    #cboxTopLeft{width:21px; height:21px; background:url(images/controls.png) no-repeat -101px 0;}
+    #cboxTopRight{width:21px; height:21px; background:url(images/controls.png) no-repeat -130px 0;}
+    #cboxBottomLeft{width:21px; height:21px; background:url(images/controls.png) no-repeat -101px -29px;}
+    #cboxBottomRight{width:21px; height:21px; background:url(images/controls.png) no-repeat -130px -29px;}
+    #cboxMiddleLeft{width:21px; background:url(images/controls.png) left top repeat-y;}
+    #cboxMiddleRight{width:21px; background:url(images/controls.png) right top repeat-y;}
+    #cboxTopCenter{height:21px; background:url(images/border.png) 0 0 repeat-x;}
+    #cboxBottomCenter{height:21px; background:url(images/border.png) 0 -29px repeat-x;}
+    #cboxContent{background:#fff; overflow:hidden;}
+        .cboxIframe{background:#fff;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{margin-bottom:28px;}
+        #cboxTitle{position:absolute; bottom:4px; left:0; text-align:center; width:100%; color:#949494;}
+        #cboxCurrent{position:absolute; bottom:4px; left:58px; color:#949494;}
+        #cboxLoadingOverlay{background:url(images/loading_background.png) no-repeat center center;}
+        #cboxLoadingGraphic{background:url(images/loading.gif) no-repeat center center;}
+
+        /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
+        #cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible; width:auto; background:none; }
+        
+        /* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
+        #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
+
+        #cboxSlideshow{position:absolute; bottom:4px; right:30px; color:#0092ef;}
+        #cboxPrevious{position:absolute; bottom:0; left:0; background:url(images/controls.png) no-repeat -75px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxPrevious:hover{background-position:-75px -25px;}
+        #cboxNext{position:absolute; bottom:0; left:27px; background:url(images/controls.png) no-repeat -50px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxNext:hover{background-position:-50px -25px;}
+        #cboxClose{position:absolute; bottom:0; right:0; background:url(images/controls.png) no-repeat -25px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxClose:hover{background-position:-25px -25px;}
+
+/*
+  The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
+  when an alpha filter (opacity change) is set on the element or ancestor element.  This style is not applied to or needed in IE9.
+  See: http://jacklmoore.com/notes/ie-transparency-problems/
+*/
+.cboxIE #cboxTopLeft,
+.cboxIE #cboxTopCenter,
+.cboxIE #cboxTopRight,
+.cboxIE #cboxBottomLeft,
+.cboxIE #cboxBottomCenter,
+.cboxIE #cboxBottomRight,
+.cboxIE #cboxMiddleLeft,
+.cboxIE #cboxMiddleRight {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
+}
 /*! fancyBox v2.1.5 fancyapps.com | fancyapps.com/fancybox/#license */
 .fancybox-wrap,
 .fancybox-skin,
@@ -275,7 +341,7 @@
 		background-size: 24px 24px; /*The size of the normal image, half the size of the hi-res image*/
 	}
 }
-.container{padding-left:20px;padding-right:20px}.row{width:100%;max-width:1140px;min-width:755px;margin:0 auto;overflow:hidden}.one,.two,.three,.four,.five,.six,.seven,.eight,.nine,.ten,.eleven{margin-right:3.8%;float:left;min-height:1px}.row .one{width:4.85%}.row .two{width:13.45%}.row .three{width:22.05%}.row .four{width:30.75%}.row .five{width:39.45%}.row .six{width:48%}.row .seven{width:56.75%}.row .eight{width:65.4%}.row .nine{width:74.05%}.row .ten{width:82.7%}.row .eleven{width:91.35%}.row .twelve{width:100%;float:left}.left{float:left}.right{float:right}.last{margin-right:0px}img,object,embed{max-width:100%}img{height:auto}.centered-text{text-align:center}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,video{display:inline-block;*display:inline;*zoom:1}audio:not([controls]){display:none;height:0}[hidden]{display:none}html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html,button,input,select,textarea{font-family:sans-serif}body{margin:0}a:focus{outline:thin dotted}a:active,a:hover{outline:0}h1{font-size:2em;margin:0.67em 0}h2{font-size:1.5em;margin:0.83em 0}h3{font-size:1.17em;margin:1em 0}h4{font-size:1em;margin:1.33em 0}h5{font-size:0.83em;margin:1.67em 0}h6{font-size:0.67em;margin:2.33em 0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}blockquote{margin:1em 40px}dfn{font-style:italic}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}mark{background:#ff0;color:#000}p,pre{margin:1em 0}code,kbd,pre,samp{font-family:monospace, serif;_font-family:'courier new',monospace;font-size:1em}pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word}q{quotes:none}q:before,q:after{content:'';content:none}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}dl,menu,ol,ul{margin:1em 0}dd{margin:0 0 0 40px}menu,ol,ul{padding:0 0 0 40px}nav ul,nav ol{list-style:none;list-style-image:none}img{border:0;-ms-interpolation-mode:bicubic}svg:not(:root){overflow:hidden}figure{margin:0}form{margin:0}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}legend{border:0;padding:0;white-space:normal;*margin-left:-7px}button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle}button,input{line-height:normal}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;*overflow:visible}button[disabled],html input[disabled]{cursor:default}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;*height:13px;*width:13px}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}table{border-collapse:collapse;border-spacing:0}::-moz-selection{background:#ff0;text-shadow:none}::selection{background:#ff0;text-shadow:none}img{vertical-align:middle}.chromeframe{margin:0.2em 0;background:#ccc;color:#000;padding:0.2em 0}body{font-size:75%;line-height:1.5}h1,h2,h3,h4,h5,h6{position:relative;font-family:'Gotham SSm A','Gotham SSm B',sans-serif;font-weight:700;color:#202020}h1,h2{line-height:1em;margin-bottom:18px}h1,h2,h3,h4{margin-top:18px}h3,h4,h5,h6{line-height:0.8em}h1{font-size:36px;top:5px}h2{font-size:28px;top:8px}h3{font-size:22px;top:1px}h4{font-size:18px;top:2px}h5{font-size:15px;top:4px}h6{font-size:13px;top:5px}h1:first-child,h2:first-child,h3:first-child,h4:first-child{margin-top:0}p,pre,address{font-family:'Gotham SSm A','Gotham SSm B',sans-serif;font-weight:400;font-size:16px;line-height:1.5em;position:relative;top:5px;color:#505050}small{font-size:75%}abbr,code,kbd,samp,small,var{line-height:15px}ul,ol,dl,dialog{font-family:'Gotham SSm A','Gotham SSm B',sans-serif;font-size:16px;line-height:1.5em;position:relative;top:5px;margin-top:18px;margin-bottom:18px;color:#505050}li ul,li ol,ul ul,ol ol{top:0;margin-top:0;margin-bottom:0}li h1,li h2,li h3,li h4,li h5,li h6,li p{top:0}a{color:#0a457d;text-decoration:none}a:visited{color:#095b90}a:hover{color:#2e75ad}strong{font-weight:400}/*!
+.container{padding-left:20px;padding-right:20px}.row{width:100%;max-width:1140px;min-width:755px;margin:0 auto;overflow:hidden}.one,.two,.three,.four,.five,.six,.seven,.eight,.nine,.ten,.eleven{margin-right:3.8%;float:left;min-height:1px}.row .one{width:4.85%}.row .two{width:13.45%}.row .three{width:22.05%}.row .four{width:30.75%}.row .five{width:39.45%}.row .six{width:48%}.row .seven{width:56.75%}.row .eight{width:65.4%}.row .nine{width:74.05%}.row .ten{width:82.7%}.row .eleven{width:91.35%}.row .twelve{width:100%;float:left}.left{float:left}.right{float:right}.last{margin-right:0px}img,object,embed{max-width:100%}img{height:auto}.centered-text{text-align:center}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,video{display:inline-block;*display:inline;*zoom:1}audio:not([controls]){display:none;height:0}[hidden]{display:none}html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html,button,input,select,textarea{font-family:sans-serif}body{margin:0}a:focus{outline:thin dotted}a:active,a:hover{outline:0}h1{font-size:2em;margin:0.67em 0}h2{font-size:1.5em;margin:0.83em 0}h3{font-size:1.17em;margin:1em 0}h4{font-size:1em;margin:1.33em 0}h5{font-size:0.83em;margin:1.67em 0}h6{font-size:0.67em;margin:2.33em 0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}blockquote{margin:1em 40px}dfn{font-style:italic}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}mark{background:#ff0;color:#000}p,pre{margin:1em 0}code,kbd,pre,samp{font-family:monospace, serif;_font-family:'courier new',monospace;font-size:1em}pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word}q{quotes:none}q:before,q:after{content:'';content:none}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}dl,menu,ol,ul{margin:1em 0}dd{margin:0 0 0 40px}menu,ol,ul{padding:0 0 0 40px}nav ul,nav ol{list-style:none;list-style-image:none}img{border:0;-ms-interpolation-mode:bicubic}svg:not(:root){overflow:hidden}figure{margin:0}form{margin:0}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}legend{border:0;padding:0;white-space:normal;*margin-left:-7px}button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle}button,input{line-height:normal}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;*overflow:visible}button[disabled],html input[disabled]{cursor:default}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;*height:13px;*width:13px}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}table{border-collapse:collapse;border-spacing:0}::-moz-selection{background:#ff0;text-shadow:none}::selection{background:#ff0;text-shadow:none}img{vertical-align:middle}.chromeframe{margin:0.2em 0;background:#ccc;color:#000;padding:0.2em 0}body{font-size:75%;line-height:1.5}h1,h2,h3,h4,h5,h6{position:relative;font-family:'aktiv-grotesk-std',sans-serif;font-weight:bold;color:#202020}h1,h2{line-height:1em;margin-bottom:18px}h1,h2,h3,h4{margin-top:18px}h3,h4,h5,h6{line-height:0.8em}h1{font-size:36px;top:5px}h2{font-size:28px;top:8px}h3{font-size:22px;top:1px}h4{font-size:18px;top:2px}h5{font-size:15px;top:4px}h6{font-size:13px;top:5px}h1:first-child,h2:first-child,h3:first-child,h4:first-child{margin-top:0}p,pre,address{font-family:'aktiv-grotesk-std',sans-serif;font-weight:normal;font-size:16px;line-height:1.5em;position:relative;top:5px;color:#505050}small{font-size:75%}abbr,code,kbd,samp,small,var{line-height:15px}ul,ol,dl,dialog{font-family:'aktiv-grotesk-std',sans-serif;font-size:16px;line-height:1.5em;position:relative;top:5px;margin-top:18px;margin-bottom:18px;color:#505050}li ul,li ol,ul ul,ol ol{top:0;margin-top:0;margin-bottom:0}li h1,li h2,li h3,li h4,li h5,li h6,li p{top:0}a{color:#0a457d;text-decoration:none}a:visited{color:#095b90}a:hover{color:#2e75ad}strong{font-weight:normal}/*!
  *  Font Awesome 3.2.1
  *  the iconic font designed for Bootstrap
  *  ------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-/*! kateboyd 2015-01-11 */
+/*! kateboyd 2015-09-13 */
 $(function() {
 
 	var $container = $('.isotope').isotope({
